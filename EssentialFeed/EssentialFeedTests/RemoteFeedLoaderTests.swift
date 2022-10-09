@@ -82,13 +82,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
     private func expect(_ sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         // act: when we tell sut to load and we complete the client's HTTP request with an error
         // spy -> capturing the value
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
+        var capturedResults = [RemoteFeedLoader.Result]()
+        sut.load { capturedResults.append($0) }
         
         action()
         
         // assert: then we expect the captured load error to be a given error
-        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     // the spy's job is to capture the messages (invocations) in a clear and comprehensive way.
