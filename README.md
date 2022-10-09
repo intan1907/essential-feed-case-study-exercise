@@ -1,4 +1,5 @@
 # Essential Feed App – Image Feed Feature
+This repository contains the progress of my learning on [iOS Lead Essentials program](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/) from [Essential Developer](https://www.essentialdeveloper.com/).
 
 ## BDD Specs
 
