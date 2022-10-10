@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemoteFeedLoader { // prevent subclasses
+public final class RemoteFeedLoader: FeedLoader { // prevent subclasses
     private let url: URL
     private let client: HTTPClient
     
@@ -16,10 +16,7 @@ public final class RemoteFeedLoader { // prevent subclasses
         case invalidData
     }
     
-    public enum Result: Equatable {
-        case success([FeedItem])
-        case failure(Error)
-    }
+    public typealias Result = LoadFeedResult
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -39,7 +36,7 @@ public final class RemoteFeedLoader { // prevent subclasses
             case .success(let data, let response):
                 completion(FeedItemsMapper.map(data, from: response))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }
