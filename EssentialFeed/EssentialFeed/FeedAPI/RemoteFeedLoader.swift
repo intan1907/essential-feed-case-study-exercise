@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class RemoteFeedLoader { // prevent subclasses
+public final class RemoteFeedLoader: FeedLoader { // prevent subclasses
     private let url: URL
     private let client: HTTPClient
     
