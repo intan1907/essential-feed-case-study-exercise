@@ -7,6 +7,15 @@
 
 import Foundation
 
+public enum HTTPClientResult {
+    case success(Data, HTTPURLResponse)
+    case failure(Error)
+}
+
+public protocol HTTPClient {
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
+}
+
 public final class RemoteFeedLoader { // prevent subclasses
     private let url: URL
     private let client: HTTPClient
@@ -27,20 +36,54 @@ public final class RemoteFeedLoader { // prevent subclasses
     }
     
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { [weak self] result in
-            // bisa saja ada case di mana `client` hidup lebih lama dari `RemoteFeedLoader`
-            // tetapi client menyimpan instance dari `load(completion:)` dan meng-invoke-nya
-            // sedangkan kita tidak menginginkan behavior tsb
-            // sehingga kita meng-capture `self` dengan `weak self`
-            // lalu set guard untuk melanjutkan hanya jika `self` masih hidup
-            guard self != nil else { return }
-            
+        client.get(from: url) { result in
             switch result {
             case .success(let data, let response):
-                completion(FeedItemsMapper.map(data, from: response))
+                do {
+                    let items = try FeedItemsMapper.map(data, response)
+                    completion(.success(items))
+                } catch {
+                    completion(.failure(.invalidData))
+                }
             case .failure:
                 completion(.failure(.connectivity))
             }
         }
+    }
+}
+
+private class FeedItemsMapper {
+    // move the Root and Item structs here so no one as access to it
+    private struct Root: Decodable {
+        let items: [Item]
+    }
+
+    // buat FeedItem model terpisah khusus untuk DAO
+    private struct Item: Decodable {
+        let id: UUID
+        let description: String?
+        let location: String?
+        let image: URL // namanya sama dengan yang ada di response
+        
+        // mapper ke domain model
+        var item: FeedItem {
+            return FeedItem(
+                id: id,
+                description: description,
+                location: location,
+                imageURL: image
+            )
+        }
+    }
+    
+    static var OK_200: Int { return 200 }
+
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [FeedItem] {
+        guard response.statusCode == OK_200 else {
+            throw RemoteFeedLoader.Error.invalidData
+        }
+        
+        let root = try JSONDecoder().decode(Root.self, from: data)
+        return root.items.map { $0.item }
     }
 }
