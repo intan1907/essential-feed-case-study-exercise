@@ -97,7 +97,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         // and now it's going to invoke us to say "now it's time for you to start loading the URL"
         override func startLoading() {
             guard
-                let url = request.url,
+                let url = request.url, // request is an instance variable of URLProtocol
                 let stub = URLProtocolStub.stubs[url]
             else { return }
             
