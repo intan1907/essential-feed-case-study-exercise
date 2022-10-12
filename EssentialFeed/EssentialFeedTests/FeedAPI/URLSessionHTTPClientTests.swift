@@ -21,8 +21,7 @@ class URLSessionHTTPClient {
         session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
-            } else if let data = data, data.count > 0,
-                      let response = response as? HTTPURLResponse {
+            } else if let data = data, let response = response as? HTTPURLResponse {
                 completion(.success(data, response))
             } else {
                 completion(.failure(UnexpectedValuesRepresentation()))
@@ -77,10 +76,6 @@ class URLSessionHTTPClientTests: XCTestCase {
     func test_getFromURL_failsOnAllInvalidRepresentationCases() {
         XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
         XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPURLResponse(), error: nil))
-        // we thought that this will generate an invalid scenario but somehow the URL Loading
-        // system is replaing our nil data with an empty data of zero bytes in the case
-        // where we returned a valid `HTTPURLResponse`
-        XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPURLResponse(), error: nil))
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: nil, error: nil))
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: nil, error: anyNSError()))
         XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPURLResponse(), error: anyNSError()))
@@ -101,9 +96,35 @@ class URLSessionHTTPClientTests: XCTestCase {
             switch result {
             case .success(let receivedData, let receivedResponse):
                 XCTAssertEqual(receivedData, data)
-                // internally the URL Loading system is somehow replacing the passed `response`
+                // internally the URL Loading System is somehow replacing the passed `response`
                 // with their own response so the `receivedResponse` has a different pointer
                 // from the `response`; but the values are still the same
+                XCTAssertEqual(receivedResponse.url, response.url)
+                XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
+            default:
+                XCTFail("Expected success, got \(result) instead")
+            }
+
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    // we thought that this will generate an invalid scenario but somehow the URL Loading
+    // system is replacing our nil data with an empty data of zero bytes in the case
+    // where we returned a valid `HTTPURLResponse`
+    func test_getFromURL_succeedsWithEmptyDataOnHTTPURLResponseWithNilData() {
+        let response = anyHTTPURLResponse()
+        URLProtocolStub.stub(data: nil, response: response, error: nil)
+        
+        let exp = expectation(description: "Wait for success completion")
+        
+        makeSUT().get(from: URL(string: "https://other-url.com")!) { result in
+            switch result {
+            case .success(let receivedData, let receivedResponse):
+                let emptyData = Data()
+                XCTAssertEqual(receivedData, emptyData)
                 XCTAssertEqual(receivedResponse.url, response.url)
                 XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
             default:
