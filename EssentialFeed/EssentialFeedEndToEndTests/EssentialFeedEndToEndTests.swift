@@ -11,21 +11,7 @@ import EssentialFeed
 class EssentialFeedEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
-        let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
-        let client = URLSessionHTTPClient()
-        let loader = RemoteFeedLoader(url: testServerURL, client: client)
-        
-        let exp = expectation(description: "Wait for load completion")
-        
-        var receivedResult: LoadFeedResult?
-        loader.load { result in
-            receivedResult = result
-            exp.fulfill()
-        }
-        
-        // set timeout to the shortest time. it's estimated to be 3 to 5 seconds
-        // but my internet performance is not really good :) it took 11.493 seconds
-        wait(for: [exp], timeout: 15.0)
+        let receivedResult = getFeedResult()
         
         switch receivedResult {
         case .success(let items):
@@ -56,6 +42,25 @@ class EssentialFeedEndToEndTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func getFeedResult() -> LoadFeedResult? {
+        let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
+        let client = URLSessionHTTPClient()
+        let loader = RemoteFeedLoader(url: testServerURL, client: client)
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        var receivedResult: LoadFeedResult?
+        loader.load { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        
+        // set timeout to the shortest time. it's estimated to be 3 to 5 seconds
+        // but my internet performance is not really good :) it took 11.493 seconds
+        wait(for: [exp], timeout: 15.0)
+        return receivedResult
+    }
     
     private func expectedItem(at index: Int) -> FeedItem {
         return FeedItem(
