@@ -24,6 +24,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     func test_getFromURL_performsGETRequestWithURL() {
         let url = anyURL()
+        
         let exp = expectation(description: "Wait for request")
         
         URLProtocolStub.observeRequests { request in
@@ -32,6 +33,14 @@ class URLSessionHTTPClientTests: XCTestCase {
             
             exp.fulfill()
         }
+        
+        // this line shows that this test is not waiting for request to complete
+        // because we don't care about the request result, we just care that request
+        // was initiated.
+        // however, this introduces the data race. we must wait the request to finish
+        // otherwise the request background thread will stay alive during the execution
+        // of other tests
+        // makeSUT().get(from: url) { _ in }
         
         makeSUT().get(from: url) { _ in }
         
@@ -190,7 +199,15 @@ class URLSessionHTTPClientTests: XCTestCase {
         // it's our responsibility to complete the request with either success or failure
         // it means we intercept this request and we had control over its fate
         override class func canInit(with request: URLRequest) -> Bool {
-            requestObserver?(request)
+            // in this line, we are capturing the request observer and invoke it.
+            // unfortunately, `canInit(with:)` method is invoked before the request even
+            // starts which means the `test_getFromURL_performsGETRequestWithURL` test method
+            // will finish its execution before the request even started. so when the test
+            // method returns, the request will still be running.
+            // so ideally we should move this line to `startLoading()` method which is
+            // the method that starts the URL request and where we can finish the `URLRequest`
+            // `requestObserver?(request)`
+            
             return true
         }
         
@@ -201,6 +218,11 @@ class URLSessionHTTPClientTests: XCTestCase {
         // it means that the framework has accepted that we are going to handle this request
         // and now it's going to invoke us to say "now it's time for you to start loading the URL"
         override func startLoading() {
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                return requestObserver(request)
+            }
+            
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
             }
