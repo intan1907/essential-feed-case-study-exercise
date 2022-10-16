@@ -6,24 +6,62 @@
 //
 
 import XCTest
+import EssentialFeed
 
 class LocalFeedLoader {
+    private let store: FeedStore
+    
     init(store: FeedStore) {
-        
+        self.store = store
+    }
+    
+    func save(_ items: [FeedItem]) {
+        store.deleteCachedFeed()
     }
 }
 
 class FeedStore {
     var deleteCachedFeedCallCount = 0
+    
+    func deleteCachedFeed() {
+        deleteCachedFeedCallCount += 1
+    }
 }
 
 class CacheFeedUseCaseTests: XCTestCase {
 
     func test_init_doesNotDeleteCacheUponCreation() {
         let store = FeedStore()
+        // To decouple the application from framework details, we don't let frameworks dictate the Use Case interface (e.g., adding Codable requirements or CoreData managed contexts parameters).
+        // We do so by test-driving the interfaces the Use Case needs for its collaborators, rather than defining the interface upfront to facilitate a specific framework implementation.
         _ = LocalFeedLoader(store: store)
         
         XCTAssertEqual(store.deleteCachedFeedCallCount, 0)
+    }
+    
+    func test_save_requestsCacheDeletion() {
+        let store = FeedStore()
+        let sut = LocalFeedLoader(store: store)
+        let items = [uniqueItem(), uniqueItem()]
+        
+        sut.save(items)
+        
+        XCTAssertEqual(store.deleteCachedFeedCallCount, 1)
+    }
+    
+    // MARK: - Helpers
+    
+    private func uniqueItem() -> FeedItem {
+        return FeedItem(
+            id: UUID(),
+            description: "any description",
+            location: "any location",
+            imageURL: anyURL()
+        )
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "http://any-url.com")!
     }
 
 }
