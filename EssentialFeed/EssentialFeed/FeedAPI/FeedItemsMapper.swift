@@ -7,14 +7,6 @@
 
 import Foundation
 
-// buat FeedItem model terpisah khusus untuk DAO
-internal struct RemoteFeedItem: Decodable {
-    internal let id: UUID
-    internal let description: String?
-    internal let location: String?
-    internal let image: URL // namanya sama dengan yang ada di response
-}
-
 // the `internal` is the default (no need to explicitly hardcoded it)
 internal final class FeedItemsMapper {
     // move the Root and Item structs here so no one as access to it
