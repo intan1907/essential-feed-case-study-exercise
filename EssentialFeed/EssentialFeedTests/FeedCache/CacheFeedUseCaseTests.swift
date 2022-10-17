@@ -8,36 +8,6 @@
 import XCTest
 import EssentialFeed
 
-class LocalFeedLoader {
-    private let store: FeedStore
-    private let currentDate: () -> Date
-    
-    init(store: FeedStore, currentDate: @escaping () -> Date) {
-        self.store = store
-        self.currentDate = currentDate
-    }
-    
-    func save(_ items: [FeedItem], completion: @escaping (Error?) -> Void) {
-        store.deleteCachedFeed() { [unowned self] error in
-            if error == nil {
-                self.store.insert(items, timestamp: self.currentDate(), completion: completion)
-            } else {
-                completion(error)
-            }
-        }
-    }
-}
-
-// To decouple the application from framework details, we don't let frameworks dictate the Use Case interface (e.g., adding Codable requirements or CoreData managed contexts parameters).
-// We do so by test-driving the interfaces the Use Case needs for its collaborators, rather than defining the interface upfront to facilitate a specific framework implementation.
-protocol FeedStore {
-    typealias DeletionCompletion = (Error?) -> Void
-    typealias InsertionCompletion = (Error?) -> Void
-    
-    func deleteCachedFeed(completion: @escaping DeletionCompletion)
-    func insert(_ items: [FeedItem], timestamp: Date, completion: @escaping InsertionCompletion)
-}
-
 class CacheFeedUseCaseTests: XCTestCase {
 
     func test_init_doesNotMessageStoreUponCreation() {
@@ -103,6 +73,33 @@ class CacheFeedUseCaseTests: XCTestCase {
             store.completeDeletionSuccessfully()
             store.completeInsertionSuccessfully()
         })
+    }
+    
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = FeedStoreSpy()
+        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
+        
+        var receivedErrors = [LocalFeedLoader.SaveResult]()
+        sut?.save([uniqueItem()]) { receivedErrors.append($0) }
+        
+        sut = nil
+        store.completeDeletion(with: anyNSError())
+        
+        XCTAssertTrue(receivedErrors.isEmpty)
+    }
+    
+    func test_save_doesNotDeliverInsertionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = FeedStoreSpy()
+        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
+        
+        var receivedErrors = [LocalFeedLoader.SaveResult]()
+        sut?.save([uniqueItem()]) { receivedErrors.append($0) }
+        
+        store.completeDeletionSuccessfully()
+        sut = nil
+        store.completeInsertion(with: anyNSError())
+        
+        XCTAssertTrue(receivedErrors.isEmpty)
     }
     
     // MARK: - Helpers
