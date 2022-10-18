@@ -24,7 +24,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_load_requestsCacheRetrieval() {
         let (sut, store) = makeSUT()
         
-        sut.load() { _ in }
+        sut.load { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -80,6 +80,15 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         expect(sut, toCompleteWith: .success([]), when: {
             store.completeRetrieval(with: feed.local, timestamp: moreThanSevenDaysOldTimestamp)
         })
+    }
+    
+    func test_load_deletesCacheOnRetrievalError() {
+        let (sut, store) = makeSUT()
+        
+        sut.load { _ in }
+        store.completeRetrieval(with: anyNSError())
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedFeed])
     }
 
     // MARK: - Helpers
