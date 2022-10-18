@@ -11,14 +11,20 @@ import Foundation
 private final class FeedCachePolicy {
     // The `currentDate` function is impure because everytime you invoke this function it may return a different value. It's non-deterministic.
     // It's easier to reason about core logic that is deterministic.
-    private let calendar = Calendar(identifier: .gregorian)
+    private static let calendar = Calendar(identifier: .gregorian)
     
-    private var maxCacheAgeInDays: Int {
+    // The initializers is private because `FeedCachePolicy` is a rule (value object: a model without identity), not a model with indentity. It just holds values, not a state.
+    // So you can never have an instance of this.
+    private init() { }
+    // - entity -> model with identity -> have a state -> can be instantiate
+    // - value object -> model without identity -> have no state -> can never be instantiated -> preferred to be static
+    
+    private static var maxCacheAgeInDays: Int {
         return 7
     }
     
     // So we remove the `currentDate` function and deal only with values
-    func validate(_ timestamp: Date, against date: Date) -> Bool {
+    static func validate(_ timestamp: Date, against date: Date) -> Bool {
         // given date + max days
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
             return false
@@ -31,7 +37,6 @@ private final class FeedCachePolicy {
 public final class LocalFeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
-    private let cachePolicy = FeedCachePolicy()
     
     public init(store: FeedStore, currentDate: @escaping () -> Date) {
         self.store = store
@@ -72,7 +77,7 @@ extension LocalFeedLoader: FeedLoader {
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            case let .found(feed, timestamp) where self.cachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(feed.toModels()))
             case .found, .empty:
                 completion(.success([]))
@@ -89,7 +94,7 @@ extension LocalFeedLoader {
             switch result {
             case .failure:
                 self.store.deleteCachedFeed { _ in }
-            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 self.store.deleteCachedFeed { _ in }
             case .empty, .found:
                 // By using explicit "cases" instead of "default" we get a build error when a new case is added to the enum.
