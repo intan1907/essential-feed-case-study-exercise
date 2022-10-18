@@ -21,6 +21,8 @@ public final class LocalFeedLoader {
         return 7
     }
     
+    // The `LocalFeedLoader` should encapsulate application-specific logic only, and communicate with Models to perform business logic.
+    // Rules and policies (e.g., validation logic) are better suited in a Domain Model that is application-agnostic (so it can be [re]used across applications).
     private func validate(_ timestamp: Date) -> Bool {
         // given date + max days
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
