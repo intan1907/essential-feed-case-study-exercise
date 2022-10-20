@@ -119,7 +119,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_delete_deliversErrorOnDeletionError() {
-        let noDeletePermissionURL = cachesDirectory()
+        let noDeletePermissionURL = cachesDirectory(domainMask: .systemDomainMask)
         let sut = makeSUT(storeURL: noDeletePermissionURL)
         
         let deletionError = deleteCache(from: sut)
@@ -230,8 +230,8 @@ class CodableFeedStoreTests: XCTestCase {
         return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
     
-    private func cachesDirectory() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    private func cachesDirectory(domainMask: FileManager.SearchPathDomainMask = .userDomainMask) -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: domainMask).first!
     }
     
 }
