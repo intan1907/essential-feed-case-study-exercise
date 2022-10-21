@@ -7,12 +7,17 @@
 		<key>CI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>EssentialFeed.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>EssentialFeedCacheIntegrationTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>EssentialFeedEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>EF58D34A28F03C97002AFD4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFB8A7A629025C610079F430</key>
 		<dict>
 			<key>primary</key>
 			<true/>
