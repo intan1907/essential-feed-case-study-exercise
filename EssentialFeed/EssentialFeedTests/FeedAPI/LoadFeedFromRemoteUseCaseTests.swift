@@ -140,10 +140,10 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
             "description": item.description,
             "location": item.location,
             "image": item.url.absoluteString
-        ].reduce(into: [String: Any]()) { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        } // reduce ke accumulated dictionary -> filter si dictionary agar hanya berisi value yang tidak nil
-        
+        ].compactMapValues { $0 }
+//        .reduce(into: [String: Any]()) { (acc, e) in
+//            if let value = e.value { acc[e.key] = value }
+//        } // -> filter si dictionary agar hanya berisi value yang tidak nil
         return (item, json)
     }
     
