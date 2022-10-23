@@ -51,9 +51,9 @@ extension LocalFeedLoader: FeedLoader {
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .success(.found(feed, timestamp)) where FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(feed.toModels()))
-            case .found, .empty:
+            case .success:
                 completion(.success([]))
             }
         }
@@ -68,9 +68,9 @@ extension LocalFeedLoader {
             switch result {
             case .failure:
                 self.store.deleteCachedFeed { _ in }
-            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .success(.found(_, timestamp)) where !FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 self.store.deleteCachedFeed { _ in }
-            case .empty, .found:
+            case .success:
                 // By using explicit "cases" instead of "default" we get a build error when a new case is added to the enum.
                 // A build error can be useful as it will remind us to rethink the validation logic (maybe a new cache should also trigger a cache deletion!), but it makes our code less flexible (susceptible to breaking changes). It's trade-off.
                 // Alternatively, you can add, along with the explicit cases "@unknown default" which will generate a warning (rather than a build error) when new cases are added
