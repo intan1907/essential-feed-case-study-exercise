@@ -7,10 +7,7 @@
 
 import Foundation
 
-public enum CachedFeed {
-    case empty
-    case found(feed: [LocalFeedImage], timestamp: Date)
-}
+public typealias CachedFeed = (feed: [LocalFeedImage], timestamp: Date)
 
 // To decouple the application from framework details, we don't let frameworks dictate the Use Case interface (e.g., adding Codable requirements or CoreData managed contexts parameters).
 // We do so by test-driving the interfaces the Use Case needs for its collaborators, rather than defining the interface upfront to facilitate a specific framework implementation.
@@ -18,7 +15,7 @@ public protocol FeedStore {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
     
-    typealias RetrievalResult = Result<CachedFeed, Error>
+    typealias RetrievalResult = Result<CachedFeed?, Error>
     typealias RetrievalCompletion = (RetrievalResult) -> Void
     
     /// The completion handler can be invoked in any thread.
