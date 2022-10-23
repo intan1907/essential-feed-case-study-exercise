@@ -8,7 +8,7 @@
 import Foundation
 
 // Rules and policies (e.g., validation logic) are better suited in a Domain Model that is application-agnostic (so it can be [re]used across applications).
-internal final class FeedCachePolicy {
+final class FeedCachePolicy {
     // The `currentDate` function is impure because everytime you invoke this function it may return a different value. It's non-deterministic.
     // It's easier to reason about core logic that is deterministic.
     private static let calendar = Calendar(identifier: .gregorian)
@@ -25,7 +25,7 @@ internal final class FeedCachePolicy {
     }
     
     // So we remove the `currentDate` function and deal only with values
-    internal static func validate(_ timestamp: Date, against date: Date) -> Bool {
+    static func validate(_ timestamp: Date, against date: Date) -> Bool {
         // given date + max days
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
             return false
