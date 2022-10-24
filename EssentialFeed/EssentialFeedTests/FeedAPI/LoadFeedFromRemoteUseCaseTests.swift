@@ -140,10 +140,10 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
             "description": item.description,
             "location": item.location,
             "image": item.url.absoluteString
-        ].reduce(into: [String: Any]()) { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        } // reduce ke accumulated dictionary -> filter si dictionary agar hanya berisi value yang tidak nil
-        
+        ].compactMapValues { $0 }
+//        .reduce(into: [String: Any]()) { (acc, e) in
+//            if let value = e.value { acc[e.key] = value }
+//        } // -> filter si dictionary agar hanya berisi value yang tidak nil
         return (item, json)
     }
     
@@ -181,13 +181,13 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     private class HTTPClientSpy: HTTPClient {
         // message passing = invoking behavior
         // in this case, calling the method `get(from url:, completion:)` is the "message"
-        var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
+        var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
         
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
             messages.append((url, completion))
         }
         
@@ -202,7 +202,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
                 httpVersion: nil,
                 headerFields: nil
             )!
-            messages[index].completion(.success(data, response))
+            messages[index].completion(.success((data, response)))
         }
     }
     

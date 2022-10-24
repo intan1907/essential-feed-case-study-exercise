@@ -8,9 +8,9 @@
 import Foundation
 
 // buat FeedItem model terpisah khusus untuk DAO dan decouple antara FeedItemsMapper dan FeedItem
-internal struct RemoteFeedItem: Decodable {
-    internal let id: UUID
-    internal let description: String?
-    internal let location: String?
-    internal let image: URL // namanya sama dengan yang ada di response
+struct RemoteFeedItem: Decodable {
+    let id: UUID
+    let description: String?
+    let location: String?
+    let image: URL // namanya sama dengan yang ada di response
 }
