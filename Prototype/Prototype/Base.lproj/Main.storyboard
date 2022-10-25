@@ -27,7 +27,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="558" id="KrX-i5-FeN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="558" id="KrX-i5-FeN" customClass="FeedImageCell" customModule="Prototype" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="66" width="390" height="558"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KrX-i5-FeN" id="gyS-Y1-Ubr">
@@ -116,6 +116,12 @@ Description Description Description Description</string>
                                         <constraint firstItem="tyX-8s-TWs" firstAttribute="leading" secondItem="gyS-Y1-Ubr" secondAttribute="leadingMargin" id="wAb-JO-WYj"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="NlS-ia-35R" id="tQp-Cf-1so"/>
+                                    <outlet property="feedImageView" destination="CLm-8V-f4M" id="pGA-QA-gGh"/>
+                                    <outlet property="locationContainer" destination="RVA-Tc-q6w" id="DoH-TT-VDF"/>
+                                    <outlet property="locationLabel" destination="qGe-nw-B2a" id="iaB-zi-Z2U"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
