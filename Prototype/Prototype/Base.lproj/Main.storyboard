@@ -130,6 +130,12 @@ Description Description Description Description</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Feed" id="W86-2X-BKO"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="TmD-tu-p6r">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh" destination="40x-ng-MN9" eventType="valueChanged" id="q0x-wo-eWa"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8D-8a-G4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
