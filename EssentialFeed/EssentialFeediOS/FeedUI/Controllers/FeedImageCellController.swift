@@ -49,9 +49,7 @@ final class FeedImageCellController {
         task = imageLoader.loadImageData(from: model.url) { _ in }
     }
     
-    deinit {
-        // model ini dirancang agar seolah-olah masing-masing cell ditampilkan ketika model ini hidup
-        // sehingga ketika model ini dihancurkan (deinit), task yang dilakukan harus di-cancel
+    func cancelLoad() {
         task?.cancel()
     }
 }
