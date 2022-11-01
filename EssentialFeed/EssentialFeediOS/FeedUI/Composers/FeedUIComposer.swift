@@ -13,11 +13,19 @@ public final class FeedUIComposer {
     public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
         let refreshController = FeedRefreshViewController(feedLoader: feedLoader)
         let feedController = FeedViewController(refreshController: refreshController)
-        refreshController.onRefresh = { [weak feedController] feed in
-            feedController?.tableModel = feed.map {
-                FeedImageCellController(model: $0, imageLoader: imageLoader)
+        refreshController.onRefresh = adaptFeedToCellControllers(forwardingTo: feedController, loader: imageLoader)
+        return feedController
+    }
+    
+    // this is an Adapter pattern and it's a common pattern you will encounter on a composer
+    // when composing type, the Adapter pattern helps you connect unmatching APIs
+    // [FeedImage] -> Adapt -> [FeedImageCellController]
+    // to keep the responsibilities of creating the dependencies away from the types that uses the dependencies
+    private static func adaptFeedToCellControllers(forwardingTo controller: FeedViewController, loader: FeedImageDataLoader) -> (([FeedImage]) -> Void) {
+        return { [weak controller] feed in
+            controller?.tableModel = feed.map {
+                FeedImageCellController(model: $0, imageLoader: loader)
             }
         }
-        return feedController
     }
 }
