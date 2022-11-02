@@ -24,11 +24,11 @@ final class FeedRefreshViewController: NSObject {
     private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
         // onChange closure ini adalah binding logic antara ViewModel dan View
         // binding (state di) ViewModel dengan View
-        viewModel.onChange = { viewModel in
-            if viewModel.isLoading {
-                view.beginRefreshing()
+        viewModel.onLoadingStateChange = { [weak view] isLoading in
+            if isLoading {
+                view?.beginRefreshing()
             } else {
-                view.endRefreshing()
+                view?.endRefreshing()
             }
         }
         // binding View dengan (aksinya yang ada di) ViewModel
