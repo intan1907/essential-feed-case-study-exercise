@@ -12,22 +12,31 @@ public final class FeedUIComposer {
     private init() { }
     
     public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
-        let feedViewModel = FeedViewModel(feedLoader: feedLoader)
-        let refreshController = FeedRefreshViewController(viewModel: feedViewModel)
+        let presenter = FeedPresenter(feedLoader: feedLoader)
+        let refreshController = FeedRefreshViewController(presenter: presenter)
         let feedController = FeedViewController(refreshController: refreshController)
-        feedViewModel.onFeedLoad = adaptFeedToCellControllers(forwardingTo: feedController, loader: imageLoader)
+        presenter.loadingView = refreshController
+        presenter.feedView = FeedViewAdapter(controller: feedController, imageLoader: imageLoader)
         return feedController
     }
+}
+
+// this is an Adapter pattern and it's a common pattern you will encounter on a composer
+// when composing type, the Adapter pattern helps you connect unmatching APIs
+// [FeedImage] -> Adapt -> [FeedImageCellController]
+// to keep the responsibilities of creating the dependencies away from the types that uses the dependencies
+private final class FeedViewAdapter: FeedView {
+    private weak var controller: FeedViewController?
+    private let imageLoader: FeedImageDataLoader
     
-    // this is an Adapter pattern and it's a common pattern you will encounter on a composer
-    // when composing type, the Adapter pattern helps you connect unmatching APIs
-    // [FeedImage] -> Adapt -> [FeedImageCellController]
-    // to keep the responsibilities of creating the dependencies away from the types that uses the dependencies
-    private static func adaptFeedToCellControllers(forwardingTo controller: FeedViewController, loader: FeedImageDataLoader) -> (([FeedImage]) -> Void) {
-        return { [weak controller] feed in
-            controller?.tableModel = feed.map {
-                FeedImageCellController(viewModel: FeedImageViewModel(model: $0, imageLoader: loader, imageTransformer: UIImage.init))
-            }
+    init(controller: FeedViewController, imageLoader: FeedImageDataLoader) {
+        self.controller = controller
+        self.imageLoader = imageLoader
+    }
+    
+    func display(feed: [FeedImage]) {
+        controller?.tableModel = feed.map {
+            FeedImageCellController(viewModel: FeedImageViewModel(model: $0, imageLoader: imageLoader, imageTransformer: UIImage.init))
         }
     }
 }
