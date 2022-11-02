@@ -6,31 +6,34 @@
 //
 
 import UIKit
-import EssentialFeed
 
 final class FeedRefreshViewController: NSObject {
     // since `target` action is based on old objective-C APIs, this controller needs to inherit from NSObject
-    private(set) lazy var view: UIRefreshControl = {
-        let view = UIRefreshControl()
-        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        return view
-    }()
+    private(set) lazy var view: UIRefreshControl = binded(UIRefreshControl())
     
-    private let feedLoader: FeedLoader
+    private let viewModel: FeedViewModel
     
-    init(feedLoader: FeedLoader) {
-        self.feedLoader = feedLoader
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
     }
     
-    var onRefresh: (([FeedImage]) -> Void)?
-    
     @objc func refresh() {
-        view.beginRefreshing()
-        feedLoader.load { [weak self] result in
-            if let feed = try? result.get() {
-                self?.onRefresh?(feed)
+        viewModel.loadFeed()
+    }
+    
+    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
+        // onChange closure ini adalah binding logic antara ViewModel dan View
+        // binding (state di) ViewModel dengan View
+        viewModel.onChange = { viewModel in
+            if viewModel.isLoading {
+                view.beginRefreshing()
+            } else {
+                view.endRefreshing()
             }
-            self?.view.endRefreshing()
         }
+        // binding View dengan (aksinya yang ada di) ViewModel
+        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        return view
     }
 }
