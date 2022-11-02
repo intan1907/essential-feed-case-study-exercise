@@ -12,7 +12,7 @@ import EssentialFeed
 // ketika mengubah closure menjadi protocol, usahakan untuk memetakannya 1 ke 1
 // contoh: 2 closure -> 2 protocol
 // (menjadi 1 protocol jika memang hanya ada kasus 1 object saja yg langsung implement keduanya)
-protocol FeedLoadingView: AnyObject { // conform to class (sekarang pakai AnyObject), untuk bisa di-weakify
+protocol FeedLoadingView {
     func display(isLoading: Bool)
 }
 
@@ -28,7 +28,7 @@ final class FeedPresenter {
     }
     
     var feedView: FeedView?
-    weak var loadingView: FeedLoadingView?
+    var loadingView: FeedLoadingView?
     
     func loadFeed() {
         loadingView?.display(isLoading: true)
