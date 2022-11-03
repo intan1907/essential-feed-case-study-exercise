@@ -13,30 +13,19 @@ protocol FeedRefreshViewControllerDelegate {
 
 final class FeedRefreshViewController: NSObject, FeedLoadingView {
     // since `target` action is based on old objective-C APIs, this controller needs to inherit from NSObject
-    private(set) lazy var view = loadView()
+    @IBOutlet var view: UIRefreshControl?
     
-    private let delegate: FeedRefreshViewControllerDelegate
+    var delegate: FeedRefreshViewControllerDelegate?
     
-    init(delegate: FeedRefreshViewControllerDelegate) {
-        self.delegate = delegate
-    }
-    
-    @objc func refresh() {
-        delegate.didRequestFeedRefresh()
+    @IBAction func refresh() {
+        delegate?.didRequestFeedRefresh()
     }
     
     func display(_ viewModel: FeedLoadingViewModel) {
         if viewModel.isLoading {
-            view.beginRefreshing()
+            view?.beginRefreshing()
         } else {
-            view.endRefreshing()
+            view?.endRefreshing()
         }
-    }
-    
-    private func loadView() -> UIRefreshControl {
-        let view = UIRefreshControl()
-        view.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
-        return view
     }
 }
