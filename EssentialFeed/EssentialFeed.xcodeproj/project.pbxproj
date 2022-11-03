@@ -16,6 +16,7 @@
 		EF3F93A7291388E400C9512C /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A6291388E400C9512C /* Feed.storyboard */; };
 		EF3F93A929138A5100C9512C /* Feed.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A829138A5100C9512C /* Feed.xcassets */; };
 		EF3F93AB2913A51900C9512C /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */; };
+		EF3F93AD2913A8FD00C9512C /* UIImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93AC2913A8FD00C9512C /* UIImageView+Animations.swift */; };
 		EF40D8EB2912018600240237 /* FeedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40D8EA2912018600240237 /* FeedImageViewModel.swift */; };
 		EF40D8EE291252DD00240237 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40D8ED291252DD00240237 /* FeedPresenter.swift */; };
 		EF42904B2910F7E100DCA7B3 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF42904A2910F7E100DCA7B3 /* UIImage+TestHelpers.swift */; };
@@ -140,6 +141,7 @@
 		EF3F93A6291388E400C9512C /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		EF3F93A829138A5100C9512C /* Feed.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Feed.xcassets; sourceTree = "<group>"; };
 		EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
+		EF3F93AC2913A8FD00C9512C /* UIImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animations.swift"; sourceTree = "<group>"; };
 		EF40D8EA2912018600240237 /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 		EF40D8ED291252DD00240237 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		EF42904A2910F7E100DCA7B3 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				EF42906E2910FD6F00DCA7B3 /* FeedImageCell.swift */,
 				EF42906F2910FD6F00DCA7B3 /* UIView+Shimmering.swift */,
 				EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */,
+				EF3F93AC2913A8FD00C9512C /* UIImageView+Animations.swift */,
 				EF3F93A6291388E400C9512C /* Feed.storyboard */,
 				EF3F93A829138A5100C9512C /* Feed.xcassets */,
 			);
@@ -785,6 +788,7 @@
 				EF3F93A32913547000C9512C /* FeedLoadingViewModel.swift in Sources */,
 				EF4290722910FD6F00DCA7B3 /* FeedImageCell.swift in Sources */,
 				EF3F93A12913194800C9512C /* FeedImagePresenter.swift in Sources */,
+				EF3F93AD2913A8FD00C9512C /* UIImageView+Animations.swift in Sources */,
 				EF4290742910FD6F00DCA7B3 /* FeedViewController.swift in Sources */,
 				EF4290732910FD6F00DCA7B3 /* UIView+Shimmering.swift in Sources */,
 				EF40D8EB2912018600240237 /* FeedImageViewModel.swift in Sources */,
