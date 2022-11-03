@@ -42,6 +42,12 @@ extension WeakRefVirtualProxy: FeedLoadingView where T: FeedLoadingView {
     }
 }
 
+extension WeakRefVirtualProxy: FeedImageView where T: FeedImageView, T.Image == UIImage {
+    func display(_ viewModel: FeedImageViewModel<UIImage>) {
+        object?.display(viewModel)
+    }
+}
+
 // this is an Adapter pattern and it's a common pattern you will encounter on a composer
 // when composing type, the Adapter pattern helps you connect unmatching APIs
 // [FeedImage] -> Adapt -> [FeedImageCellController]
@@ -57,7 +63,15 @@ private final class FeedViewAdapter: FeedView {
     
     func display(_ viewModel: FeedViewModel) {
         controller?.tableModel = viewModel.feed.map {
-            FeedImageCellController(viewModel: FeedImageViewModel(model: $0, imageLoader: imageLoader, imageTransformer: UIImage.init))
+            let adapter = FeedImageLoaderPresentationAdapter<WeakRefVirtualProxy<FeedImageCellController>, UIImage>(model: $0, imageLoader: imageLoader)
+            let controller = FeedImageCellController(delegate: adapter)
+            
+            adapter.presenter = FeedImagePresenter(
+                view: WeakRefVirtualProxy(controller),
+                imageTransformer: UIImage.init
+            )
+            
+            return controller
         }
     }
 }
@@ -80,5 +94,37 @@ private final class FeedLoaderPresentationAdapter: FeedRefreshViewControllerDele
                 self?.presenter?.didFinishLoadingFeed(with: error)
             }
         }
+    }
+}
+
+private final class FeedImageLoaderPresentationAdapter<View: FeedImageView, Image>: FeedImageCellControllerDelegate where View.Image == Image {
+    private let model: FeedImage
+    private let imageLoader: FeedImageDataLoader
+    private var task: FeedImageDataLoaderTask?
+    
+    var presenter: FeedImagePresenter<View, Image>?
+    
+    init(model: FeedImage, imageLoader: FeedImageDataLoader) {
+        self.model = model
+        self.imageLoader = imageLoader
+    }
+    
+    func didRequestImage() {
+        presenter?.didStartLoadingImageData(for: model)
+        
+        let model = self.model
+        task = imageLoader.loadImageData(from: model.url) { [weak self] result in
+            switch result {
+            case let .success(data):
+                self?.presenter?.didFinishLoadingImageData(with: data, for: model)
+            case let .failure(error):
+                self?.presenter?.didFinishLoadingImageData(with: error, for: model)
+            }
+        }
+    }
+    
+    func didCancelImageRequest() {
+        task?.cancel()
+        task = nil
     }
 }
