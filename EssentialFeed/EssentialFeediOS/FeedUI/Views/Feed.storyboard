@@ -133,6 +133,7 @@ Description Description Description Description</string>
                         <connections>
                             <outlet property="dataSource" destination="nCo-R2-QGP" id="4XH-Qu-0iv"/>
                             <outlet property="delegate" destination="nCo-R2-QGP" id="rBo-uK-Yuv"/>
+                            <outlet property="prefetchDataSource" destination="nCo-R2-QGP" id="Y26-gn-YWm"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Feed" id="BNP-7j-G47"/>
