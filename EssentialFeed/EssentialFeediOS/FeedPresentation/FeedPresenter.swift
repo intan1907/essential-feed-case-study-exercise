@@ -23,15 +23,25 @@ protocol FeedView {
     func display(_ viewModel: FeedViewModel)
 }
 
+struct FeedErrorViewModel {
+    let message: String
+}
+
+protocol FeedErrorView {
+    func display(_ viewModel: FeedErrorViewModel)
+}
+
 final class FeedPresenter {
     // pada MVP, Presenter harus punya View, jadi view abstraction di bawah tidak boleh optional
     private let feedView: FeedView
     private let loadingView: FeedLoadingView
+    private let errorView: FeedErrorView
     
     // constructor injection memastikan bahwa suatu komponen memiliki dependencies yang ia butuhkan secara lifetime
-    init(feedView: FeedView, loadingView: FeedLoadingView) {
+    init(feedView: FeedView, loadingView: FeedLoadingView, errorView: FeedErrorView) {
         self.feedView = feedView
         self.loadingView = loadingView
+        self.errorView = errorView
     }
     
     static var title: String {
@@ -40,6 +50,15 @@ final class FeedPresenter {
             tableName: "Feed",
             bundle: Bundle(for: FeedPresenter.self),
             comment: "Title for the feed view"
+        )
+    }
+    
+    private var feedLoadError: String {
+        return NSLocalizedString(
+            "FEED_VIEW_CONNECTION_ERROR",
+             tableName: "Feed",
+             bundle: Bundle(for: FeedPresenter.self),
+             comment: "Error message displayed when we can't load the image feed from the server"
         )
     }
     
@@ -53,6 +72,7 @@ final class FeedPresenter {
     }
     
     func didFinishLoadingFeed(with error: Error) {
+        errorView.display(FeedErrorViewModel(message: feedLoadError))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }
