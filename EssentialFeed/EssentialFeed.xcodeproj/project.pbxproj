@@ -85,6 +85,7 @@
 		EFEA5B5F28FD7656006C1F84 /* LocalFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEA5B5E28FD7656006C1F84 /* LocalFeedImage.swift */; };
 		EFEB93AC2916581D004A6EE2 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB93AB2916581D004A6EE2 /* ErrorView.swift */; };
 		EFEB93AF29165D70004A6EE2 /* FeedErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB93AE29165D70004A6EE2 /* FeedErrorViewModel.swift */; };
+		EFEB93B129165DE5004A6EE2 /* UIRefreshControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEB93B029165DE5004A6EE2 /* UIRefreshControl+Helpers.swift */; };
 		EFF9447828FF5D8000DDD2AF /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9447728FF5D8000DDD2AF /* FeedCachePolicy.swift */; };
 /* End PBXBuildFile section */
 
@@ -216,6 +217,7 @@
 		EFEA5B5E28FD7656006C1F84 /* LocalFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImage.swift; sourceTree = "<group>"; };
 		EFEB93AB2916581D004A6EE2 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		EFEB93AE29165D70004A6EE2 /* FeedErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorViewModel.swift; sourceTree = "<group>"; };
+		EFEB93B029165DE5004A6EE2 /* UIRefreshControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Helpers.swift"; sourceTree = "<group>"; };
 		EFF9447728FF5D8000DDD2AF /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -570,6 +572,7 @@
 				EF42906F2910FD6F00DCA7B3 /* UIView+Shimmering.swift */,
 				EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */,
 				EF3F93AC2913A8FD00C9512C /* UIImageView+Animations.swift */,
+				EFEB93B029165DE5004A6EE2 /* UIRefreshControl+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				EF40D8EE291252DD00240237 /* FeedPresenter.swift in Sources */,
 				EF4290772910FDD700DCA7B3 /* FeedImageDataLoader.swift in Sources */,
 				EFEB93AC2916581D004A6EE2 /* ErrorView.swift in Sources */,
+				EFEB93B129165DE5004A6EE2 /* UIRefreshControl+Helpers.swift in Sources */,
 				EF3F93A52913549F00C9512C /* FeedViewModel.swift in Sources */,
 				EF3F93AB2913A51900C9512C /* UITableView+Dequeueing.swift in Sources */,
 				EF3F93A32913547000C9512C /* FeedLoadingViewModel.swift in Sources */,
