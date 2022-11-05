@@ -21,7 +21,8 @@ public final class FeedUIComposer {
                 controller: feedController,
                 imageLoader: MainQueueDispatchDecorator(decoratee: imageLoader)
             ),
-            loadingView: WeakRefVirtualProxy(feedController)
+            loadingView: WeakRefVirtualProxy(feedController),
+            errorView: WeakRefVirtualProxy(feedController)
         )
         // ketika menemukan circular dependency pada 2 komponen (case ini `presentationAdapter` dan `presenter`), harus ada salah satu yg memakai property injection; tidak boleh keduanya constructor injection
         // tapi ketika melakukan property injection tidak boleh membocorkan composition detail dari komponen tsb
