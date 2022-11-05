@@ -26,7 +26,7 @@ public final class ErrorView: UIView {
         return alpha > 0
     }
 
-    private func setMessageAnimated(_ message: String?) {
+    @IBAction func setMessageAnimated(_ message: String?) {
         if let message = message {
             showAnimated(message)
         } else {
