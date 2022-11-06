@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF1930012917656000775B68 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1930002917656000775B68 /* FeedPresenterTests.swift */; };
+		EF1930042917890100775B68 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF1930062917890100775B68 /* Feed.strings */; };
 		EF1D2E0D2908E85E000FC0C8 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */; };
 		EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */; };
 		EF257664290A28100006196C /* FeedUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF257663290A28100006196C /* FeedUIIntegrationTests.swift */; };
@@ -144,6 +145,9 @@
 
 /* Begin PBXFileReference section */
 		EF1930002917656000775B68 /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
+		EF1930052917890100775B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
+		EF1930072917890700775B68 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
+		EF1930092917891C00775B68 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1D2E0C2908E85E000FC0C8 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1930002917656000775B68 /* FeedPresenterTests.swift */,
+				EF1930062917890100775B68 /* Feed.strings */,
 			);
 			path = FeedPresentation;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1930042917890100775B68 /* Feed.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +977,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EF1930062917890100775B68 /* Feed.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF1930052917890100775B68 /* en */,
+				EF1930072917890700775B68 /* el */,
+				EF1930092917891C00775B68 /* pt-PT */,
+			);
+			name = Feed.strings;
+			sourceTree = "<group>";
+		};
 		EF3F93BB2913E9BF00C9512C /* Feed.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -1,0 +1,10 @@
+/* 
+  Feed.strings
+  EssentialFeed
+
+  Created by Intan Nurjanah on 06/11/22.
+  
+*/
+
+"FEED_VIEW_TITLE" = "To Feed µou";
+"FEED_VIEW_CONNECTION_ERROR" = "Δεν ήταν δυνατή η σύνδεση στο διακομιστή";
