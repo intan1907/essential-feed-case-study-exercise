@@ -16,6 +16,7 @@
 		EF19301A291791C700775B68 /* FeedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93BF2913EB0D00C9512C /* FeedLocalizationTests.swift */; };
 		EF19301C291792AA00775B68 /* FeedImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301B291792AA00775B68 /* FeedImagePresenterTests.swift */; };
 		EF19301E29179FE400775B68 /* FeedImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301D29179FE400775B68 /* FeedImagePresenter.swift */; };
+		EF1930202917A0A800775B68 /* FeedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301F2917A0A800775B68 /* FeedImageViewModel.swift */; };
 		EF1D2E0D2908E85E000FC0C8 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */; };
 		EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */; };
 		EF257664290A28100006196C /* FeedUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF257663290A28100006196C /* FeedUIIntegrationTests.swift */; };
@@ -155,6 +156,7 @@
 		EF19301829178E0B00775B68 /* FeedErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorViewModel.swift; sourceTree = "<group>"; };
 		EF19301B291792AA00775B68 /* FeedImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImagePresenterTests.swift; sourceTree = "<group>"; };
 		EF19301D29179FE400775B68 /* FeedImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImagePresenter.swift; sourceTree = "<group>"; };
+		EF19301F2917A0A800775B68 /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 		EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1D2E0C2908E85E000FC0C8 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -295,8 +297,9 @@
 				EF19301429178D9A00775B68 /* FeedViewModel.swift */,
 				EF19301829178E0B00775B68 /* FeedErrorViewModel.swift */,
 				EF19300B29178B7E00775B68 /* FeedPresenter.swift */,
-				EF19301129178C9D00775B68 /* Feed.strings */,
+				EF19301F2917A0A800775B68 /* FeedImageViewModel.swift */,
 				EF19301D29179FE400775B68 /* FeedImagePresenter.swift */,
+				EF19301129178C9D00775B68 /* Feed.strings */,
 			);
 			path = FeedPresentation;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				EFD802D828F4206600B9784D /* FeedItemsMapper.swift in Sources */,
 				EF58D35E28F03EEB002AFD4B /* FeedLoader.swift in Sources */,
 				EFEA5B5D28FD75CF006C1F84 /* RemoteFeedItem.swift in Sources */,
+				EF1930202917A0A800775B68 /* FeedImageViewModel.swift in Sources */,
 				EFF9447828FF5D8000DDD2AF /* FeedCachePolicy.swift in Sources */,
 				EFE37CD928F26B4100C04C83 /* RemoteFeedLoader.swift in Sources */,
 				EFB8A799290203AB0079F430 /* FeedStore.xcdatamodeld in Sources */,
