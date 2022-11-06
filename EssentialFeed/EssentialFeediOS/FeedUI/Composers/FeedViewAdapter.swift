@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EssentialFeed
 
 // this is an Adapter pattern and it's a common pattern you will encounter on a composer
 // when composing type, the Adapter pattern helps you connect unmatching APIs
