@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EssentialFeed
 
 // membuat suatu object `T` menjadi weak reference
 final class WeakRefVirtualProxy<T: AnyObject> {
