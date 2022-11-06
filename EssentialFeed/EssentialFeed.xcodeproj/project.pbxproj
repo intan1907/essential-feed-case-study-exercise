@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EF1930012917656000775B68 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1930002917656000775B68 /* FeedPresenterTests.swift */; };
-		EF1930042917890100775B68 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF1930062917890100775B68 /* Feed.strings */; };
+		EF19300C29178B7E00775B68 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19300B29178B7E00775B68 /* FeedPresenter.swift */; };
+		EF19300F29178C9D00775B68 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF19301129178C9D00775B68 /* Feed.strings */; };
 		EF1D2E0D2908E85E000FC0C8 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */; };
 		EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */; };
 		EF257664290A28100006196C /* FeedUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF257663290A28100006196C /* FeedUIIntegrationTests.swift */; };
@@ -145,9 +146,10 @@
 
 /* Begin PBXFileReference section */
 		EF1930002917656000775B68 /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
-		EF1930052917890100775B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
-		EF1930072917890700775B68 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
-		EF1930092917891C00775B68 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Feed.strings"; sourceTree = "<group>"; };
+		EF19300B29178B7E00775B68 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		EF19301029178C9D00775B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
+		EF19301229178CA200775B68 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
+		EF19301329178CA500775B68 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EF1D2E052908E85D000FC0C8 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1D2E0C2908E85E000FC0C8 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -282,7 +284,15 @@
 			isa = PBXGroup;
 			children = (
 				EF1930002917656000775B68 /* FeedPresenterTests.swift */,
-				EF1930062917890100775B68 /* Feed.strings */,
+			);
+			path = FeedPresentation;
+			sourceTree = "<group>";
+		};
+		EF19300A29178B6C00775B68 /* FeedPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				EF19300B29178B7E00775B68 /* FeedPresenter.swift */,
+				EF19301129178C9D00775B68 /* Feed.strings */,
 			);
 			path = FeedPresentation;
 			sourceTree = "<group>";
@@ -438,6 +448,7 @@
 				EFEA5B5528FD2195006C1F84 /* FeedCache */,
 				EFE37CD728F26B2700C04C83 /* FeedAPI */,
 				EF58D35F28F03FCB002AFD4B /* FeedFeature */,
+				EF19300A29178B6C00775B68 /* FeedPresentation */,
 				EF58D34628F03C97002AFD4B /* EssentialFeed.h */,
 			);
 			path = EssentialFeed;
@@ -804,6 +815,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF19300F29178C9D00775B68 /* Feed.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,7 +823,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1930042917890100775B68 /* Feed.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,6 +906,7 @@
 				EFEA5B5728FD21AD006C1F84 /* LocalFeedLoader.swift in Sources */,
 				EFD802D628F41FDC00B9784D /* HTTPClient.swift in Sources */,
 				EF58D35C28F03CAD002AFD4B /* FeedImage.swift in Sources */,
+				EF19300C29178B7E00775B68 /* FeedPresenter.swift in Sources */,
 				EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */,
 				EFB8A7A02902568B0079F430 /* ManagedCache.swift in Sources */,
 				EFB8A7962901FF990079F430 /* CoreDataFeedStore.swift in Sources */,
@@ -977,12 +989,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EF1930062917890100775B68 /* Feed.strings */ = {
+		EF19301129178C9D00775B68 /* Feed.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EF1930052917890100775B68 /* en */,
-				EF1930072917890700775B68 /* el */,
-				EF1930092917891C00775B68 /* pt-PT */,
+				EF19301029178C9D00775B68 /* en */,
+				EF19301229178CA200775B68 /* el */,
+				EF19301329178CA500775B68 /* pt-PT */,
 			);
 			name = Feed.strings;
 			sourceTree = "<group>";
