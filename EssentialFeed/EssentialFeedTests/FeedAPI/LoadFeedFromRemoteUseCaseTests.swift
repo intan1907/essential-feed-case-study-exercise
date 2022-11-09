@@ -179,6 +179,10 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     // the spy's job is to capture the messages (invocations) in a clear and comprehensive way.
     // for example, how many times the message was invoked, with what parameters and in which order
     private class HTTPClientSpy: HTTPClient {
+        private struct Task: HTTPClientTask {
+            func cancel() {}
+        }
+        
         // message passing = invoking behavior
         // in this case, calling the method `get(from url:, completion:)` is the "message"
         var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
@@ -187,8 +191,10 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
             return messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
+        @discardableResult
+        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
             messages.append((url, completion))
+            return Task()
         }
         
         func complete(with error: Error, at index: Int = 0) {
