@@ -50,6 +50,7 @@
 		EF6A862A28FEBEB100057546 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6A862928FEBEB100057546 /* SharedTestHelpers.swift */; };
 		EF7264FD291C5FC30002D252 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7264FC291C5FC20002D252 /* HTTPClientSpy.swift */; };
 		EF7264FF291C60E90002D252 /* RemoteFeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7264FE291C60E90002D252 /* RemoteFeedImageDataLoader.swift */; };
+		EF726502291C685F0002D252 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF726501291C685F0002D252 /* HTTPURLResponse+StatusCode.swift */; };
 		EF7ABC1D28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7ABC1C28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		EF81F0F2291BA25000DBFA32 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4290762910FDD700DCA7B3 /* FeedImageDataLoader.swift */; };
 		EF81F0F4291BA40A00DBFA32 /* RemoteFeedImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81F0F3291BA40A00DBFA32 /* RemoteFeedImageDataLoaderTests.swift */; };
@@ -195,6 +196,7 @@
 		EF6A862928FEBEB100057546 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		EF7264FC291C5FC20002D252 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		EF7264FE291C60E90002D252 /* RemoteFeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedImageDataLoader.swift; sourceTree = "<group>"; };
+		EF726501291C685F0002D252 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		EF7ABC1C28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		EF81F0F3291BA40A00DBFA32 /* RemoteFeedImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedImageDataLoaderTests.swift; sourceTree = "<group>"; };
 		EF8EF9D128F4CE2C0082DF3B /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
@@ -468,6 +470,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EF726500291C68560002D252 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EF726501291C685F0002D252 /* HTTPURLResponse+StatusCode.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		EF7ABC1B28F5BA01004EC0D9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,12 +556,13 @@
 		EFE37CD728F26B2700C04C83 /* FeedAPI */ = {
 			isa = PBXGroup;
 			children = (
+				EF726500291C68560002D252 /* Helpers */,
 				EFE37CD828F26B4100C04C83 /* RemoteFeedLoader.swift */,
 				EFD802D728F4206600B9784D /* FeedItemsMapper.swift */,
-				EFD802D528F41FDC00B9784D /* HTTPClient.swift */,
-				EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */,
 				EFEA5B5C28FD75CF006C1F84 /* RemoteFeedItem.swift */,
 				EF7264FE291C60E90002D252 /* RemoteFeedImageDataLoader.swift */,
+				EFD802D528F41FDC00B9784D /* HTTPClient.swift */,
+				EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */,
 			);
 			path = FeedAPI;
 			sourceTree = "<group>";
@@ -890,6 +901,7 @@
 				EF58D35C28F03CAD002AFD4B /* FeedImage.swift in Sources */,
 				EF19300C29178B7E00775B68 /* FeedPresenter.swift in Sources */,
 				EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */,
+				EF726502291C685F0002D252 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				EFB8A7A02902568B0079F430 /* ManagedCache.swift in Sources */,
 				EFB8A7962901FF990079F430 /* CoreDataFeedStore.swift in Sources */,
 				EF19301929178E0B00775B68 /* FeedErrorViewModel.swift in Sources */,
