@@ -21,7 +21,7 @@ public final class CoreDataFeedStore: FeedStore {
             // Result(caching:) akan otomatis melakukan do-catch block; Kalau masuk ke throws, maka otomatis akan di-passing ke failure. Jadi kita tinggal mendeklarasikan success block nya saja.
             completion(Result {
                 try ManagedCache.find(in: context).map {
-                    return CachedFeed(feed: $0.localFeed, timestamp: $0.timestamp)
+                    CachedFeed(feed: $0.localFeed, timestamp: $0.timestamp)
                 }
             })
         }
