@@ -52,6 +52,7 @@
 		EF7264FF291C60E90002D252 /* RemoteFeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7264FE291C60E90002D252 /* RemoteFeedImageDataLoader.swift */; };
 		EF726502291C685F0002D252 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF726501291C685F0002D252 /* HTTPURLResponse+StatusCode.swift */; };
 		EF726504291C69BA0002D252 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF726503291C69BA0002D252 /* URLProtocolStub.swift */; };
+		EF726506291C82A30002D252 /* LocalFeedImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF726505291C82A30002D252 /* LocalFeedImageDataLoaderTests.swift */; };
 		EF7ABC1D28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7ABC1C28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		EF81F0F2291BA25000DBFA32 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4290762910FDD700DCA7B3 /* FeedImageDataLoader.swift */; };
 		EF81F0F4291BA40A00DBFA32 /* LoadFeedImageDataFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF81F0F3291BA40A00DBFA32 /* LoadFeedImageDataFromRemoteUseCaseTests.swift */; };
@@ -199,6 +200,7 @@
 		EF7264FE291C60E90002D252 /* RemoteFeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedImageDataLoader.swift; sourceTree = "<group>"; };
 		EF726501291C685F0002D252 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		EF726503291C69BA0002D252 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		EF726505291C82A30002D252 /* LocalFeedImageDataLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedImageDataLoaderTests.swift; sourceTree = "<group>"; };
 		EF7ABC1C28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		EF81F0F3291BA40A00DBFA32 /* LoadFeedImageDataFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedImageDataFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		EF8EF9D128F4CE2C0082DF3B /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				EF6A862028FE0D0700057546 /* LoadFeedFromCacheUseCaseTests.swift */,
 				EF6A862528FEB3AE00057546 /* ValidateFeedCacheUseCaseTests.swift */,
 				EFB8A7932901FDA40079F430 /* CoreDataFeedStoreTests.swift */,
+				EF726505291C82A30002D252 /* LocalFeedImageDataLoaderTests.swift */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF726506291C82A30002D252 /* LocalFeedImageDataLoaderTests.swift in Sources */,
 				EF6A862828FEBDD800057546 /* FeedCacheTestHelpers.swift in Sources */,
 				EF726504291C69BA0002D252 /* URLProtocolStub.swift in Sources */,
 				EF6A862628FEB3AE00057546 /* ValidateFeedCacheUseCaseTests.swift in Sources */,
