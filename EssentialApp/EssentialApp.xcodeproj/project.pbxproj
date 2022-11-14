@@ -22,6 +22,7 @@
 		EFD842D42921F61D0062917E /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842D32921F61D0062917E /* FeedImageDataLoaderWithFallbackCompositeTests.swift */; };
 		EFD842D629220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842D529220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift */; };
 		EFD842D929220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842D829220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift */; };
+		EFD842DB292210640062917E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842DA292210640062917E /* SharedTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		EFD842D32921F61D0062917E /* FeedImageDataLoaderWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		EFD842D529220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		EFD842D829220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		EFD842DA292210640062917E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				EFD842D829220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift */,
+				EFD842DA292210640062917E /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				EFD842D42921F61D0062917E /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */,
 				EF4D7FAD29210B44007789BF /* FeedLoaderWithFallbackCompositeTests.swift in Sources */,
+				EFD842DB292210640062917E /* SharedTestHelpers.swift in Sources */,
 				EFD842D929220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
