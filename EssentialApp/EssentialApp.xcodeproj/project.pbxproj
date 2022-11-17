@@ -26,6 +26,7 @@
 		EFD842D629220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842D529220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift */; };
 		EFD842D929220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842D829220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift */; };
 		EFD842DB292210640062917E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD842DA292210640062917E /* SharedTestHelpers.swift */; };
+		EFFE24722926DD0C004EA50E /* FeedLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFE24712926DD0C004EA50E /* FeedLoaderCacheDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		EFD842D529220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		EFD842D829220FBC0062917E /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		EFD842DA292210640062917E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		EFFE24712926DD0C004EA50E /* FeedLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				EFA13E8C291F972600AF4566 /* Info.plist */,
 				EFD842D129219F280062917E /* FeedLoaderWithFallbackComposite.swift */,
 				EFD842D529220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift */,
+				EFFE24712926DD0C004EA50E /* FeedLoaderCacheDecorator.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				EFA13E83291F972300AF4566 /* ViewController.swift in Sources */,
 				EFA13E7F291F972300AF4566 /* AppDelegate.swift in Sources */,
 				EFD842D229219F280062917E /* FeedLoaderWithFallbackComposite.swift in Sources */,
+				EFFE24722926DD0C004EA50E /* FeedLoaderCacheDecorator.swift in Sources */,
 				EFA13E81291F972300AF4566 /* SceneDelegate.swift in Sources */,
 				EFD842D629220F050062917E /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
 			);
