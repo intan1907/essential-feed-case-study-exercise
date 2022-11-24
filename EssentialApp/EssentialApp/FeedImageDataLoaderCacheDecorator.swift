@@ -7,12 +7,6 @@
 
 import EssentialFeed
 
-public protocol FeedImageDataCache {
-    typealias Result = Swift.Result<Void, Error>
-    
-    func insert(_ data: Data, for url: URL, completion: @escaping (Result) -> Void)
-}
-
 public class FeedImageDataLoaderCacheDecorator: FeedImageDataLoader {
     private let decoratee: FeedImageDataLoader
     private let cache: FeedImageDataCache
