@@ -58,12 +58,9 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase, FeedImageDataLoaderTes
         let url = anyURL()
         let data = anyData()
         
-        let exp = expectation(description: "Waiting for load completion")
-        _ = sut.loadImageData(from: url) { _ in exp.fulfill() }
-        
+        _ = sut.loadImageData(from: url) { _ in }
         loader.complete(with: data)
         
-        wait(for: [exp], timeout: 1.0)
         XCTAssertEqual(cache.messages, [.save(data, url)], "Expected to cache loaded data on success")
     }
     
@@ -71,12 +68,9 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase, FeedImageDataLoaderTes
         let (sut, loader, cache) = makeSUT()
         let url = anyURL()
         
-        let exp = expectation(description: "Waiting for load completion")
-        _ = sut.loadImageData(from: url) { _ in exp.fulfill() }
-        
+        _ = sut.loadImageData(from: url) { _ in }
         loader.complete(with: anyNSError())
         
-        wait(for: [exp], timeout: 1.0)
         XCTAssertTrue(cache.messages.isEmpty, "Expected not to cache data on load error")
     }
     
