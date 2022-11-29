@@ -62,7 +62,7 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase, FeedImageDataLoaderTes
         _ = sut.loadImageData(from: url) { _ in }
         loader.complete(with: imageData)
         
-        XCTAssertEqual(cache.messages, [.save(imageData, url)], "Expected to cache loaded data on success")
+        XCTAssertEqual(cache.messages, [.save(data: imageData, for: url)], "Expected to cache loaded data on success")
     }
     
     func test_loadImageData_doesNotCacheDataOnLoaderFailure() {
@@ -90,11 +90,11 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase, FeedImageDataLoaderTes
         private(set) var messages = [Message]()
         
         enum Message: Equatable {
-            case save(Data, URL)
+            case save(data: Data, for: URL)
         }
         
         func save(_ data: Data, for url: URL, completion: @escaping (FeedImageDataCache.Result) -> Void) {
-            messages.append(.save(data, url))
+            messages.append(.save(data: data, for: url))
         }
     }
     
