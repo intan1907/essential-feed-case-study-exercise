@@ -7,6 +7,7 @@
 
 /// My internet performance is not really good :) so I put additional code:
 /// `[...].firstMatch.waitForExistence(timeout: 1.0)`
+/// `sleep(10)`
 
 import XCTest
 
@@ -14,7 +15,7 @@ class EssentialAppUIAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteFeedWhenCustomerHasConnectivity() {
         let app = XCUIApplication()
-        
+        app.launchArguments = ["-reset"]
         app.launch()
         
         let feedCells = app.cells.matching(identifier: "feed-image-cell")
@@ -27,7 +28,9 @@ class EssentialAppUIAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysCachedRemoteFeeedWhenCustomerHasNoConnectivity() {
         let onlineApp = XCUIApplication()
+        onlineApp.launchArguments = ["-reset"]
         onlineApp.launch()
+        sleep(10) // wait for remote feed loading and caching
         
         let offlineApp = XCUIApplication()
         offlineApp.launchArguments = ["-connectivity", "offline"]
