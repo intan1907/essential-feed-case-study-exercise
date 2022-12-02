@@ -5,22 +5,17 @@
 //  Created by Intan Nurjanah on 01/12/22.
 //
 
-/// My internet performance is not really good :) so I put additional code:
-/// `[...].firstMatch.waitForExistence(timeout: 1.0)`
-/// `sleep(10)`
-
 import XCTest
 
 class EssentialAppUIAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteFeedWhenCustomerHasConnectivity() {
         let app = XCUIApplication()
-        app.launchArguments = ["-reset"]
+        app.launchArguments = ["-reset", "-connectivity", "online"]
         app.launch()
         
         let feedCells = app.cells.matching(identifier: "feed-image-cell")
-        _ = feedCells.firstMatch.waitForExistence(timeout: 10.0)
-        XCTAssertEqual(feedCells.count, 22)
+        XCTAssertEqual(feedCells.count, 2)
         
         let firstImage = app.images.matching(identifier: "feed-image-view").firstMatch
         XCTAssertTrue(firstImage.exists)
@@ -28,17 +23,15 @@ class EssentialAppUIAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysCachedRemoteFeeedWhenCustomerHasNoConnectivity() {
         let onlineApp = XCUIApplication()
-        onlineApp.launchArguments = ["-reset"]
+        onlineApp.launchArguments = ["-reset", "-connectivity", "online"]
         onlineApp.launch()
-        sleep(10) // wait for remote feed loading and caching
         
         let offlineApp = XCUIApplication()
         offlineApp.launchArguments = ["-connectivity", "offline"]
         offlineApp.launch()
         
         let cachedFeedCells = offlineApp.cells.matching(identifier: "feed-image-cell")
-        _ = cachedFeedCells.firstMatch.waitForExistence(timeout: 10.0)
-        XCTAssertEqual(cachedFeedCells.count, 22)
+        XCTAssertEqual(cachedFeedCells.count, 2)
         
         let firstCachedImage = offlineApp.images.matching(identifier: "feed-image-view").firstMatch
         XCTAssertTrue(firstCachedImage.exists)
@@ -50,7 +43,6 @@ class EssentialAppUIAcceptanceTests: XCTestCase {
         app.launch()
         
         let feedCells = app.cells.matching(identifier: "feed-image-cell")
-        _ = feedCells.firstMatch.waitForExistence(timeout: 10.0)
         XCTAssertEqual(feedCells.count, 0)
     }
     
