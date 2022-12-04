@@ -7,6 +7,7 @@
 
 import UIKit
 import EssentialFeed
+import EssentialFeediOS
 
 // this is an Adapter pattern and it's a common pattern you will encounter on a composer
 // when composing type, the Adapter pattern helps you connect unmatching APIs
@@ -22,7 +23,7 @@ final class FeedViewAdapter: FeedView {
     }
     
     func display(_ viewModel: FeedViewModel) {
-        controller?.tableModel = viewModel.feed.map {
+        controller?.display(viewModel.feed.map {
             let adapter = FeedImageDataLoaderPresentationAdapter<WeakRefVirtualProxy<FeedImageCellController>, UIImage>(model: $0, imageLoader: imageLoader)
             let controller = FeedImageCellController(delegate: adapter)
             
@@ -32,6 +33,6 @@ final class FeedViewAdapter: FeedView {
             )
             
             return controller
-        }
+        })
     }
 }
