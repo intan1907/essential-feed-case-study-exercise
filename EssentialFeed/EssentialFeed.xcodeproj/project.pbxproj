@@ -91,6 +91,7 @@
 		EFF86DF5293F4E31008C5FEF /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF86DF4293F4E31008C5FEF /* UIImage+TestHelpers.swift */; };
 		EFF86DF7293F509D008C5FEF /* UITableView+HeaderSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF86DF6293F509D008C5FEF /* UITableView+HeaderSizing.swift */; };
 		EFF86DF9293F6AA8008C5FEF /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF86DF8293F6AA8008C5FEF /* UIViewController+Snapshot.swift */; };
+		EFF86DFB293F6B2E008C5FEF /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF86DFA293F6B2E008C5FEF /* XCTestCase+Snapshot.swift */; };
 		EFF9447828FF5D8000DDD2AF /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF9447728FF5D8000DDD2AF /* FeedCachePolicy.swift */; };
 /* End PBXBuildFile section */
 
@@ -229,6 +230,7 @@
 		EFF86DF4293F4E31008C5FEF /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		EFF86DF6293F509D008C5FEF /* UITableView+HeaderSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+HeaderSizing.swift"; sourceTree = "<group>"; };
 		EFF86DF8293F6AA8008C5FEF /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		EFF86DFA293F6B2E008C5FEF /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		EFF9447728FF5D8000DDD2AF /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -581,6 +583,7 @@
 			children = (
 				EFF86DF4293F4E31008C5FEF /* UIImage+TestHelpers.swift */,
 				EFF86DF8293F6AA8008C5FEF /* UIViewController+Snapshot.swift */,
+				EFF86DFA293F6B2E008C5FEF /* XCTestCase+Snapshot.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 			files = (
 				EFD268B7290A422D007E09B3 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				EFF86DF0293F432A008C5FEF /* FeedSnapshotTests.swift in Sources */,
+				EFF86DFB293F6B2E008C5FEF /* XCTestCase+Snapshot.swift in Sources */,
 				EFF86DF9293F6AA8008C5FEF /* UIViewController+Snapshot.swift in Sources */,
 				EFF86DF5293F4E31008C5FEF /* UIImage+TestHelpers.swift in Sources */,
 			);
