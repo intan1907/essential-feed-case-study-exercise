@@ -36,8 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
         
+        window = UIWindow(windowScene: scene)
         configureWindow()
     }
         
@@ -60,9 +61,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 )
             )
         )
+
+        configureNavigationBarAppearance()
+        window?.makeKeyAndVisible()
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
         localFeedLoader.validateCache { _ in }
+    }
+    
+    private func configureNavigationBarAppearance() {
+        guard #available(iOS 15, *) else { return }
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
     }
 }
