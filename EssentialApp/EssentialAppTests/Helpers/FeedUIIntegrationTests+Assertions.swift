@@ -11,7 +11,12 @@ import EssentialFeediOS
 
 extension FeedUIIntegrationTests {
     
+    // `tableView.reloadData` doesn't force immediate layout update.
+    // So `didEndDisplayingCell` will only be called in the next layout cycle.
     func assertThat(_ sut: FeedViewController, isRendering feed: [FeedImage], file: StaticString = #filePath, line: UInt = #line) {
+        // When you tell a table view to reload, for performance reasons it doesn't do it immediately. So when you running tests and you want to ensure that you actually rendering the table view cells we need to force the table view to layout
+        sut.view.enforceLayoutCycle()
+        
         guard sut.numberOfRenderedFeedImageViews() == feed.count else {
             return XCTFail("Expected \(feed.count) images, got \(sut.numberOfRenderedFeedImageViews()) instead.", file: file, line: line)
         }
