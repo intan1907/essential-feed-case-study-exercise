@@ -39,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         configureWindow()
+        configureNavigationBarAppearance()
     }
         
     func configureWindow() {
@@ -64,5 +65,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func sceneWillResignActive(_ scene: UIScene) {
         localFeedLoader.validateCache { _ in }
+    }
+    
+    private func configureNavigationBarAppearance() {
+        guard #available(iOS 15, *) else { return }
+        UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
     }
 }
