@@ -1,7 +1,7 @@
 # Essential Feed App – Image Feed Feature
 
-![Build and Test on MacOS](https://github.com/intan1907/essential-feed-case-study-exercise/actions/workflows/ci-macOS.yml/badge.svg)
-![Build and Test on iOS](https://github.com/intan1907/essential-feed-case-study-exercise/actions/workflows/ci-iOS.yml/badge.svg)
+![Build and Test on MacOS](https://github.com/intan1907/essential-feed-case-study-exercise/actions/workflows/CI-macOS.yml/badge.svg)
+![Build and Test on iOS](https://github.com/intan1907/essential-feed-case-study-exercise/actions/workflows/CI-iOS.yml/badge.svg)
 
 This repository contains the progress of my learning on [iOS Lead Essentials program](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/) from [Essential Developer](https://www.essentialdeveloper.com/).
 
