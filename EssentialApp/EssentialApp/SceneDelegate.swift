@@ -3,7 +3,7 @@
 //  EssentialApp
 //
 //  Created by Intan Nurjanah on 12/11/22.
-//
+// 02:08:00
 
 import UIKit
 import CoreData
@@ -63,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBarAppearance()
     }
     
-    private func makeRemoteFeedLoaderWithLocalFallback() -> FeedLoader.Publisher {
+    private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<[FeedImage], Error> {
         let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         
         return httpClient
