@@ -21,15 +21,15 @@ public final class FeedUIComposer {
         
         let feedController = makeFeedViewController(delegate: presentationAdapter, title: FeedPresenter.title)
         
-        let presenter = FeedPresenter(
-            feedView: FeedViewAdapter(controller: feedController, imageLoader: imageLoader),
-            loadingView: WeakRefVirtualProxy(feedController),
-            errorView: WeakRefVirtualProxy(feedController)
-        )
         // ketika menemukan circular dependency pada 2 komponen (case ini `presentationAdapter` dan `presenter`), harus ada salah satu yg memakai property injection; tidak boleh keduanya constructor injection
         // tapi ketika melakukan property injection tidak boleh membocorkan composition detail dari komponen tsb
         // `presentationAdapter` dipilih sebagai komponen dengan property injection karena ia adalah bagian dari Composition layer. kita tidak membocorkan composition detail di sini karena adapter adalah composition component
-        presentationAdapter.presenter = presenter
+        presentationAdapter.presenter = LoadResourcePresenter(
+            resourceView: FeedViewAdapter(controller: feedController, imageLoader: imageLoader),
+            loadingView: WeakRefVirtualProxy(feedController),
+            errorView: WeakRefVirtualProxy(feedController),
+            mapper: FeedPresenter.map
+        )
         return feedController
     }
 

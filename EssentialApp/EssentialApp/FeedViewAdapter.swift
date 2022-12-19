@@ -13,7 +13,7 @@ import EssentialFeediOS
 // when composing type, the Adapter pattern helps you connect unmatching APIs
 // [FeedImage] -> Adapt -> [FeedImageCellController]
 // to keep the responsibilities of creating the dependencies away from the types that uses the dependencies
-final class FeedViewAdapter: FeedView {
+final class FeedViewAdapter: ResourceView {
     private weak var controller: FeedViewController?
     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
     
