@@ -22,6 +22,8 @@
 		EF25553128F6E295007790FF /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */; };
 		EF3683E429502E8C00A4C735 /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683E329502E8C00A4C735 /* LoadResourcePresenterTests.swift */; };
 		EF3683E929502FF700A4C735 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683E829502FF700A4C735 /* LoadResourcePresenter.swift */; };
+		EF3683EC2950636700A4C735 /* Shared.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF3683EE2950636700A4C735 /* Shared.strings */; };
+		EF3683F22950659600A4C735 /* SharedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683F12950659600A4C735 /* SharedLocalizationTests.swift */; };
 		EF3F93A7291388E400C9512C /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A6291388E400C9512C /* Feed.storyboard */; };
 		EF3F93A929138A5100C9512C /* Feed.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A829138A5100C9512C /* Feed.xcassets */; };
 		EF3F93AB2913A51900C9512C /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */; };
@@ -166,6 +168,10 @@
 		EF25553028F6E295007790FF /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		EF3683E329502E8C00A4C735 /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		EF3683E829502FF700A4C735 /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
+		EF3683ED2950636700A4C735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Shared.strings; sourceTree = "<group>"; };
+		EF3683EF2950636800A4C735 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Shared.strings; sourceTree = "<group>"; };
+		EF3683F02950636900A4C735 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Shared.strings"; sourceTree = "<group>"; };
+		EF3683F12950659600A4C735 /* SharedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTests.swift; sourceTree = "<group>"; };
 		EF3F93A6291388E400C9512C /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		EF3F93A829138A5100C9512C /* Feed.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Feed.xcassets; sourceTree = "<group>"; };
 		EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
@@ -332,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3683E329502E8C00A4C735 /* LoadResourcePresenterTests.swift */,
+				EF3683F12950659600A4C735 /* SharedLocalizationTests.swift */,
 			);
 			path = SharedPresentation;
 			sourceTree = "<group>";
@@ -340,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3683E829502FF700A4C735 /* LoadResourcePresenter.swift */,
+				EF3683EE2950636700A4C735 /* Shared.strings */,
 			);
 			path = SharedPresentation;
 			sourceTree = "<group>";
@@ -866,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF19300F29178C9D00775B68 /* Feed.strings in Resources */,
+				EF3683EC2950636700A4C735 /* Shared.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +988,7 @@
 				EF6A862428FE110600057546 /* FeedStoreSpy.swift in Sources */,
 				EF6A862A28FEBEB100057546 /* SharedTestHelpers.swift in Sources */,
 				EFEA5B5428FCB06A006C1F84 /* CacheFeedUseCaseTests.swift in Sources */,
+				EF3683F22950659600A4C735 /* SharedLocalizationTests.swift in Sources */,
 				EF72650C291CC27B0002D252 /* FeedImageDataStoreSpy.swift in Sources */,
 				EF726510291CDBB80002D252 /* CoreDataFeedImageDataStoreTests.swift in Sources */,
 				EFE358D929018B22005034CC /* XCTestCase+FailableDeleteFeedStoreSpecs.swift in Sources */,
@@ -1052,6 +1062,16 @@
 				EF19301329178CA500775B68 /* pt-PT */,
 			);
 			name = Feed.strings;
+			sourceTree = "<group>";
+		};
+		EF3683EE2950636700A4C735 /* Shared.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF3683ED2950636700A4C735 /* en */,
+				EF3683EF2950636800A4C735 /* el */,
+				EF3683F02950636900A4C735 /* pt-PT */,
+			);
+			name = Shared.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
