@@ -24,6 +24,7 @@
 		EF3683E929502FF700A4C735 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683E829502FF700A4C735 /* LoadResourcePresenter.swift */; };
 		EF3683EC2950636700A4C735 /* Shared.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF3683EE2950636700A4C735 /* Shared.strings */; };
 		EF3683F22950659600A4C735 /* SharedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683F12950659600A4C735 /* SharedLocalizationTests.swift */; };
+		EF3683F4295072C100A4C735 /* SharedLocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3683F3295072C100A4C735 /* SharedLocalizationTestHelpers.swift */; };
 		EF3F93A7291388E400C9512C /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A6291388E400C9512C /* Feed.storyboard */; };
 		EF3F93A929138A5100C9512C /* Feed.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3F93A829138A5100C9512C /* Feed.xcassets */; };
 		EF3F93AB2913A51900C9512C /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */; };
@@ -172,6 +173,7 @@
 		EF3683EF2950636800A4C735 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Shared.strings; sourceTree = "<group>"; };
 		EF3683F02950636900A4C735 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Shared.strings"; sourceTree = "<group>"; };
 		EF3683F12950659600A4C735 /* SharedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTests.swift; sourceTree = "<group>"; };
+		EF3683F3295072C100A4C735 /* SharedLocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTestHelpers.swift; sourceTree = "<group>"; };
 		EF3F93A6291388E400C9512C /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		EF3F93A829138A5100C9512C /* Feed.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Feed.xcassets; sourceTree = "<group>"; };
 		EF3F93AA2913A51900C9512C /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 			children = (
 				EF7ABC1C28F5BA22004EC0D9 /* XCTestCase+MemoryLeakTracking.swift */,
 				EF6A862928FEBEB100057546 /* SharedTestHelpers.swift */,
+				EF3683F3295072C100A4C735 /* SharedLocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -973,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF726506291C82A30002D252 /* LoadFeedImageDataFromCacheUseCaseTests.swift in Sources */,
+				EF3683F4295072C100A4C735 /* SharedLocalizationTestHelpers.swift in Sources */,
 				EF6A862828FEBDD800057546 /* FeedCacheTestHelpers.swift in Sources */,
 				EF726504291C69BA0002D252 /* URLProtocolStub.swift in Sources */,
 				EFF632EA294C2BD200E6A41F /* ImageCommentsMapperTests.swift in Sources */,
