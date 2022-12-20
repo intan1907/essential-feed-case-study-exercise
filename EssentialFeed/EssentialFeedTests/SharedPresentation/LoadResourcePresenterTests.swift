@@ -16,7 +16,7 @@ class LoadResourcePresenterTests: XCTestCase {
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
     }
     
-    func test_didStartLoading_displayNoErrorMessageAndStartsLoading() {
+    func test_didStartLoading_displaysNoErrorMessageAndStartsLoading() {
         let (sut, view) = makeSUT()
         
         sut.didStartLoading()
@@ -27,7 +27,7 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingResource_displayResourceAndStopsLoading() {
+    func test_didFinishLoadingResource_displaysResourceAndStopsLoading() {
         let (sut, view) = makeSUT(mapper: { resource in
             resource + " view model"
         })
@@ -40,7 +40,7 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingWithMapperError_displayLocalizedErrorMessageAndStopsLoading() {
+    func test_didFinishLoadingWithMapperError_displaysLocalizedErrorMessageAndStopsLoading() {
         let (sut, view) = makeSUT(mapper: { resource in
             throw anyNSError()
         })
@@ -53,7 +53,7 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingWithError_displayLocalizedErrorMessageAndStopsLoading() {
+    func test_didFinishLoadingWithError_displaysLocalizedErrorMessageAndStopsLoading() {
         let (sut, view) = makeSUT()
         
         sut.didFinishLoading(with: anyNSError())
