@@ -42,7 +42,7 @@ final class FeedViewAdapter: ResourceView {
                 mapper: UIImage.tryMake(data:)
             )
             
-            return view
+            return CellController(view)
         })
     }
 }
