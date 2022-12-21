@@ -14,6 +14,11 @@ public protocol CellController {
     func cancelLoad()
 }
 
+public extension CellController {
+    func preload() { /* optional function to implement */ }
+    func cancelLoad() { /* optional function to implement */ }
+}
+
 public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
     @IBOutlet private(set) public var errorView: ErrorView?
     
