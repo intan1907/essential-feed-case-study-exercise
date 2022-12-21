@@ -8,16 +8,7 @@
 import UIKit
 import EssentialFeed
 
-public protocol CellController {
-    func view(in tableView: UITableView) -> UITableViewCell
-    func preload()
-    func cancelLoad()
-}
-
-public extension CellController {
-    func preload() { /* optional function to implement */ }
-    func cancelLoad() { /* optional function to implement */ }
-}
+public typealias CellController = UITableViewDelegate & UITableViewDataSource & UITableViewDataSourcePrefetching
 
 public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
     @IBOutlet private(set) public var errorView: ErrorView?
@@ -64,7 +55,8 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view(in: tableView)
+        let controller = cellController(forRowAt: indexPath)
+        return controller.tableView(tableView, cellForRowAt: indexPath)
     }
     
     // When a cell moves out of the screen, another controller (`CellController`) may reuse the same cell instance.
@@ -73,17 +65,22 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     // So we shouldn't hold a strong reference to the cell at all times.
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // So when the cell goes off the screen, the `didEndDisplaying cell` method is invoked which in that case, we call `cancelLoad()`.
-        cancelCellControllerLoad(forRowAt: indexPath)
+        let controller = removeLoadingController(forRowAt: indexPath)
+        controller?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
-            cellController(forRowAt: indexPath).preload()
+            let controller = cellController(forRowAt: indexPath)
+            controller.tableView(tableView, prefetchRowsAt: indexPaths)
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(cancelCellControllerLoad)
+        indexPaths.forEach { indexPath in
+            let controller = removeLoadingController(forRowAt: indexPath)
+            controller?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
+        }
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> CellController {
@@ -92,8 +89,9 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         return controller
     }
     
-    private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
-        loadingControllers[indexPath]?.cancelLoad()
+    private func removeLoadingController(forRowAt indexPath: IndexPath) -> CellController? {
+        let controller = loadingControllers[indexPath]
         loadingControllers[indexPath] = nil
+        return controller
     }
 }
