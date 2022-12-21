@@ -12,12 +12,18 @@ public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
+public protocol CellController {
+    func view(in tableView: UITableView) -> UITableViewCell
+    func preload()
+    func cancelLoad()
+}
+
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, ResourceLoadingView, ResourceErrorView {
     @IBOutlet private(set) public var errorView: ErrorView?
     
-    private var loadingControllers = [IndexPath: FeedImageCellController]()
+    private var loadingControllers = [IndexPath: CellController]()
     
-    private var tableModel = [FeedImageCellController]() {
+    private var tableModel = [CellController]() {
         didSet { tableView.reloadData() }
     }
     
@@ -39,7 +45,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         delegate?.didRequestFeedRefresh()
     }
     
-    public func display(_ cellControllers: [FeedImageCellController]) {
+    public func display(_ cellControllers: [CellController]) {
         loadingControllers = [:]
         tableModel = cellControllers
     }
@@ -60,7 +66,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         return cellController(forRowAt: indexPath).view(in: tableView)
     }
     
-    // When a cell moves out of the screen, another controller (`FeedImageCellController`) may reuse the same cell instance.
+    // When a cell moves out of the screen, another controller (`CellController`) may reuse the same cell instance.
     // If a controller doesn't release the cell after it goes off screen, multiple controllers may be referencing the same cell.
     // If multiple controllers mutate the same cell instance, the UI may get out of sync.
     // So we shouldn't hold a strong reference to the cell at all times.
@@ -79,7 +85,7 @@ public final class FeedViewController: UITableViewController, UITableViewDataSou
         indexPaths.forEach(cancelCellControllerLoad)
     }
     
-    private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
+    private func cellController(forRowAt indexPath: IndexPath) -> CellController {
         let controller = tableModel[indexPath.row]
         loadingControllers[indexPath] = controller
         return controller
