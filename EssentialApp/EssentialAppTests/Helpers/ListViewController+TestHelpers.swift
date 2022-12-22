@@ -21,6 +21,51 @@ extension ListViewController {
         refreshControl?.simulatePullToRefresh()
     }
     
+    var isShowLoadingIndicator: Bool {
+        return refreshControl?.isRefreshing == true
+    }
+    
+    func simulateErrorViewTap() {
+        errorView.simulateTap()
+    }
+    
+    var errorMessage: String? {
+        return errorView.message
+    }
+}
+    
+extension ListViewController {
+    func numberOfRenderedComments() -> Int {
+        tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: commentsSection)
+    }
+    
+    func commentMessage(at row: Int) -> String? {
+        commentView(at: row)?.messageLabel.text
+    }
+    
+    func commentDate(at row: Int) -> String? {
+        commentView(at: row)?.dateLabel.text
+    }
+    
+    func commentUsername(at row: Int) -> String? {
+        commentView(at: row)?.usernameLabel.text
+    }
+    
+    private func commentView(at row: Int) -> ImageCommentCell? {
+        guard numberOfRenderedFeedImageViews() > row else {
+            return nil
+        }
+        let ds = tableView.dataSource
+        let index = IndexPath(row: row, section: commentsSection)
+        return ds?.tableView(tableView, cellForRowAt: index) as? ImageCommentCell
+    }
+    
+    private var commentsSection: Int {
+        return 0
+    }
+}
+
+extension ListViewController {
     @discardableResult
     func simulateFeedImageViewVisible(at row: Int) -> FeedImageCell? {
         return feedImageView(at: row) as? FeedImageCell
@@ -66,20 +111,8 @@ extension ListViewController {
         return simulateFeedImageViewVisible(at: index)?.renderedImage
     }
     
-    func simulateErrorViewTap() {
-        errorView.simulateTap()
-    }
-    
-    var errorMessage: String? {
-        return errorView.message
-    }
-    
-    var isShowLoadingIndicator: Bool {
-        return refreshControl?.isRefreshing == true
-    }
-    
     func numberOfRenderedFeedImageViews() -> Int {
-        tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: 0)
+        tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: feedImagesSection)
     }
     
     func feedImageView(at row: Int) -> UITableViewCell? {
