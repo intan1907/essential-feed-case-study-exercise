@@ -79,6 +79,11 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         errorView.message = viewModel.message
     }
     
+    public override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let dl = cellController(at: indexPath)?.delegate
+        dl?.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
+    }
+    
     // When a cell moves out of the screen, another controller (`CellController`) may reuse the same cell instance.
     // If a controller doesn't release the cell after it goes off screen, multiple controllers may be referencing the same cell.
     // If multiple controllers mutate the same cell instance, the UI may get out of sync.

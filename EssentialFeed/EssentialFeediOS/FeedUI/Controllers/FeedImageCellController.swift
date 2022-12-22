@@ -43,12 +43,11 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         return cell!
     }
     
-    // If you don't have a good estimation of cell height, then you should request image on tableView willDisplay
-    /*
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.cell = cell as? FeedImageCell
+        // If you don't have a good estimation of cell height, then you should request image on tableView willDisplay
         delegate.didRequestImage()
     }
-    */
     
     public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cancelLoad()
