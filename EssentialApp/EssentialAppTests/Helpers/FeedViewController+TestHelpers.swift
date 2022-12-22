@@ -9,6 +9,14 @@ import UIKit
 import EssentialFeediOS
 
 extension ListViewController {
+    public override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        
+        // When you want to prevent rendering cells in tests is to set the `frame` of your `tableView` to a very very small `frame`.
+        // This way there is no enough space to render the cells which is not going to load them ahead of time with diffable data source (only when we call the method).
+        tableView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
+    }
+    
     func simulateUserInitiatedFeedReload() {
         refreshControl?.simulatePullToRefresh()
     }
@@ -60,7 +68,7 @@ extension ListViewController {
     }
     
     func numberOfRenderedFeedImageViews() -> Int {
-        return tableView.numberOfRows(inSection: feedImageSection)
+        tableView.numberOfSections == 0 ? 0 : tableView.numberOfRows(inSection: 0)
     }
     
     func feedImageView(at row: Int) -> UITableViewCell? {
