@@ -14,12 +14,12 @@ import EssentialFeediOS
 // [FeedImage] -> Adapt -> [FeedImageCellController]
 // to keep the responsibilities of creating the dependencies away from the types that uses the dependencies
 final class FeedViewAdapter: ResourceView {
-    private weak var controller: FeedViewController?
+    private weak var controller: ListViewController?
     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
     
     private typealias ImageDataPresentationAdapter = LoadResourcePresentationAdapter<Data, WeakRefVirtualProxy<FeedImageCellController>>
     
-    init(controller: FeedViewController, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
+    init(controller: ListViewController, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
         self.controller = controller
         self.imageLoader = imageLoader
     }
@@ -42,7 +42,7 @@ final class FeedViewAdapter: ResourceView {
                 mapper: UIImage.tryMake(data:)
             )
             
-            return view
+            return CellController(id: model, view)
         })
     }
 }
