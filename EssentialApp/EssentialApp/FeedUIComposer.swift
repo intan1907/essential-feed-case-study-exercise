@@ -17,7 +17,8 @@ public final class FeedUIComposer {
     
     public static func feedComposedWith(
         feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>,
-        imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher
+        imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher,
+        selection: @escaping (FeedImage) -> Void = { _ in }
     ) -> ListViewController {
         let presentationAdapter = FeedPresentationAdapter(loader: feedLoader)
         
@@ -28,7 +29,11 @@ public final class FeedUIComposer {
         // tapi ketika melakukan property injection tidak boleh membocorkan composition detail dari komponen tsb
         // `presentationAdapter` dipilih sebagai komponen dengan property injection karena ia adalah bagian dari Composition layer. kita tidak membocorkan composition detail di sini karena adapter adalah composition component
         presentationAdapter.presenter = LoadResourcePresenter(
-            resourceView: FeedViewAdapter(controller: feedController, imageLoader: imageLoader),
+            resourceView: FeedViewAdapter(
+                controller: feedController,
+                imageLoader: imageLoader,
+                selection: selection
+            ),
             loadingView: WeakRefVirtualProxy(feedController),
             errorView: WeakRefVirtualProxy(feedController),
             mapper: FeedPresenter.map
