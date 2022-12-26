@@ -10,7 +10,6 @@
 		EF1930012917656000775B68 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1930002917656000775B68 /* FeedPresenterTests.swift */; };
 		EF19300C29178B7E00775B68 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19300B29178B7E00775B68 /* FeedPresenter.swift */; };
 		EF19300F29178C9D00775B68 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF19301129178C9D00775B68 /* Feed.strings */; };
-		EF19301529178D9A00775B68 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301429178D9A00775B68 /* FeedViewModel.swift */; };
 		EF19301729178DDD00775B68 /* ResourceLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301629178DDD00775B68 /* ResourceLoadingViewModel.swift */; };
 		EF19301929178E0B00775B68 /* ResourceErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF19301829178E0B00775B68 /* ResourceErrorViewModel.swift */; };
 		EF19301A291791C700775B68 /* FeedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F93BF2913EB0D00C9512C /* FeedLocalizationTests.swift */; };
@@ -197,7 +196,6 @@
 		EF19301029178C9D00775B68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		EF19301229178CA200775B68 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
 		EF19301329178CA500775B68 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Feed.strings"; sourceTree = "<group>"; };
-		EF19301429178D9A00775B68 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		EF19301629178DDD00775B68 /* ResourceLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingViewModel.swift; sourceTree = "<group>"; };
 		EF19301829178E0B00775B68 /* ResourceErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceErrorViewModel.swift; sourceTree = "<group>"; };
 		EF19301B291792AA00775B68 /* FeedImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImagePresenterTests.swift; sourceTree = "<group>"; };
@@ -390,7 +388,6 @@
 		EF19300A29178B6C00775B68 /* FeedPresentation */ = {
 			isa = PBXGroup;
 			children = (
-				EF19301429178D9A00775B68 /* FeedViewModel.swift */,
 				EF19300B29178B7E00775B68 /* FeedPresenter.swift */,
 				EF19301F2917A0A800775B68 /* FeedImageViewModel.swift */,
 				EF19301D29179FE400775B68 /* FeedImagePresenter.swift */,
@@ -1222,7 +1219,6 @@
 				EF726517291D17BB0002D252 /* CoreDataFeedStore+FeedStore.swift in Sources */,
 				EF22B84F29517B3F00E73FB1 /* ImageCommentsPresenter.swift in Sources */,
 				EFEA5B5F28FD7656006C1F84 /* LocalFeedImage.swift in Sources */,
-				EF19301529178D9A00775B68 /* FeedViewModel.swift in Sources */,
 				EFEA5B5B28FD2295006C1F84 /* FeedStore.swift in Sources */,
 				EFEA5B5728FD21AD006C1F84 /* LocalFeedLoader.swift in Sources */,
 				EFF632EE294C3DBA00E6A41F /* ImageCommentsMapper.swift in Sources */,
