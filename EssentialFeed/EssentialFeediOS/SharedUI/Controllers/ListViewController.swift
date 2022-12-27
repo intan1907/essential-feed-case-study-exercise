@@ -55,13 +55,15 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         onRefresh?()
     }
     
-    public func display(_ cellControllers: [CellController]) {
+    public func display(_ sections: [CellController]...) {
         // Every time we get new controllers:
         // - We create an empty snaphot,
         var snapshot = NSDiffableDataSourceSnapshot<Int, CellController>()
         // - We append the new controllers
-        snapshot.appendSections([0])
-        snapshot.appendItems(cellControllers, toSection: 0)
+        sections.enumerated().forEach { section, cellControllers in
+            snapshot.appendSections([section])
+            snapshot.appendItems(cellControllers, toSection: section)
+        }
         // - Tell dataSource to apply
         // The dataSource will check what changed using the Hashable implementation and only update what is necessary
         if #available(iOS 15.0, *) {
