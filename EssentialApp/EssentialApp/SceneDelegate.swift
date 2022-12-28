@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .appendingPathExtension("feed-store.sqlite")
             )
         } catch {
+            // `assertionFailure` will cause a crash in debug builds. But it has no effect in release builds. So it's much better than a print log message because you can see and fix those issues immediately.
+            assertionFailure("Failed to instantiate CoreData store with error: \(error.localizedDescription)")
             return NullStore()
         }
     }()
