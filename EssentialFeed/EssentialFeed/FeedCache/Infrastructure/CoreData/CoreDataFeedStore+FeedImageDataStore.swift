@@ -1,5 +1,5 @@
 //
-//  CoreDataFeedStore+FeedImageDataLoader.swift
+//  CoreDataFeedStore+FeedImageDataStore.swift
 //  EssentialFeed
 //
 //  Created by Intan Nurjanah on 10/11/22.
