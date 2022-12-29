@@ -9,7 +9,7 @@ import Foundation
 
 extension CoreDataFeedStore: FeedStore {
     public func retrieve(completion: @escaping RetrievalCompletion) {
-        perform { context in
+        performAsync { context in
             // Result(caching:) akan otomatis melakukan do-catch block; Kalau masuk ke throws, maka otomatis akan di-passing ke failure. Jadi kita tinggal mendeklarasikan success block nya saja.
             completion(Result {
                 try ManagedCache.find(in: context).map {
@@ -20,7 +20,7 @@ extension CoreDataFeedStore: FeedStore {
     }
     
     public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-        perform { context in
+        performAsync { context in
             completion(Result {
                 let managedCache = try ManagedCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
@@ -32,7 +32,7 @@ extension CoreDataFeedStore: FeedStore {
     }
     
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-        perform { context in
+        performAsync { context in
             completion(Result {
                 try ManagedCache.deleteCache(in: context)
             })
