@@ -27,19 +27,19 @@ class FeedImageDataStoreSpy: FeedImageDataStore {
         return try retrievalResult?.get()
     }
     
-    func completeRetrieval(with error: Error, at index: Int = 0) {
+    func completeRetrieval(with error: Error) {
         retrievalResult = .failure(error)
     }
     
-    func completeRetrieval(with data: Data?, at index: Int = 0) {
+    func completeRetrieval(with data: Data?) {
         retrievalResult = .success(data)
     }
     
-    func completeInsertion(with error: Error, at index: Int = 0) {
+    func completeInsertion(with error: Error) {
         insertionResult = .failure(error)
     }
     
-    func completeInsertionSuccessfully(at index: Int = 0) {
+    func completeInsertionSuccessfully() {
         insertionResult = .success(())
     }
 }
