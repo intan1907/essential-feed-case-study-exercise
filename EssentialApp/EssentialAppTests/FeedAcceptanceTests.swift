@@ -185,4 +185,5 @@ class FeedAcceptanceTests: XCTestCase {
     private func makeCommentMessage() -> String {
         "a message"
     }
+    
 }

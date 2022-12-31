@@ -109,11 +109,11 @@ extension Publisher {
 // this is called as documentation. we don't need this method but it clarifies our intent: we want to ignore the result.
 private extension FeedCache {
     func saveIgnoringResult(_ feed: [FeedImage]) {
-        save(feed) { _ in }
+        try? save(feed)
     }
     
     func saveIgnoringResult(_ page: Paginated<FeedImage>) {
-        save(page.items) { _ in }
+        try? save(page.items)
     }
 }
 
