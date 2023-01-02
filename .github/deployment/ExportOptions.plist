@@ -10,8 +10,8 @@
 	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.intan3951.EssentialApp</key>
-		<string>EssentialApp Prod/string>
+		<key>id.gits.MyFeed</key>
+		<string>GITS MyFeed</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>
@@ -20,9 +20,7 @@
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
-	<string>RHFN74A8PV</string>
-	<key>uploadBitcode</key>
-	<false/>
+	<string>P53KJ6MXZH</string>
 	<key>uploadSymbols</key>
 	<true/>
 </dict>
